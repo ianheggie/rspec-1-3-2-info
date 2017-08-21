@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: Community</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/community/">Community</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+          <li>
+            <a href="http://wiki.github.com/dchelimsky/rspec/get-in-touch" target="_blank">Get in Touch</a>
+          </li>
+          <li>
+            <a href="http://wiki.github.com/dchelimsky/rspec/contribute" target="_blank">Contribute</a>
+          </li>
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>The Core Team</h2>
+<ul>
+	<li><a href="http://daveastels.com/">Dave Astels</a></li>
+	<li><a href="http://blog.lavalamp.ca/">Steven Baker</a></li>
+	<li><a href="http://blog.davidchelimsky.net/">David Chelimsky</a></li>
+	<li><a href="http://blog.aslakhellesoy.com/">Aslak Hellesøy</a></li>
+	<li><a href="http://www.patmaddox.com/">Pat Maddox</a></li>
+	<li><a href="http://dannorth.net/">Dan North</a></li>
+	<li><a href="http://www.pivotalblabs.com/">Brian Takita</a></li>
+</ul>
+<table>
+  <tr>
+    <td><img src="../images/Whats_That_Dude.jpg" /></td>
+    <td><img src="http://static.flickr.com/1/127260733_84714abc76_o_d.png" /></td>
+    <td><img src="../images/pat_maddox.jpg"/></td>
+  </tr>
+  <tr>
+    <td align="center">David and Aslak</td>
+    <td align="center">Dave Astels</td>
+    <td align="center">Pat</td>
+  </tr>
+</table>
+<h2>Contributors</h2>
+<p><span style="color:red;">Apologies to recent contributors, but the following list is pretty out of date.</span></p>
+<p>In alphabetical order (by last name)</p>
+<ul>
+	<li>Daniel De Aguiar
+	<ul>
+		<li>Patch [#15446] Removed duplicate word in with_steps_for comment.</li>
+	</ul></li>
+	<li>Chris Anderson
+	<ul>
+		<li>Patch to return strings in response to :to_param (in generated controller/view specs)</li>
+		<li>Patch to add &#8212;skip-migration option to rspec_scaffold generator</li>
+	</ul></li>
+	<li>Ruy Asan
+	<ul>
+		<li>Patch [#10698] Running with &#8212;drb executes specs twice (fix included)</li>
+		<li>Initial code for &#8216;switch between source and spec file&#8217; command in Spec::Mate (Patch [#10791])</li>
+	</ul></li>
+	<li>Sinclair Bain
+	<ul>
+		<li>Patch (sort of) [#15608] Story problem if parenthesis used in Given, When, Then or And</li>
+		<li>Patch [#11101] StringHelpers.starts_with?(prefix) assumes a string parameter for <em>prefix</em></li>
+		<li>Patch for bug [#10577] Rails with Oracle breaks 0.9.2</li>
+	</ul></li>
+	<li>Ken Barker
+	<ul>
+		<li>Patch [#10921] Allow verify_rcov to accept greater than threshold coverage %&#8217;s via configuration</li>
+		<li>Patch [#10920] Added support for not implemented examples</li>
+	</ul></li>
+	<li>Jonathon Barnes
+	<ul>
+		<li>Tighter integration with Test::Unit for ActiveRecord fixtures. Speed up fixtures.</li>
+	</ul></li>
+	<li>François Beausoleil
+	<ul>
+		<li>Patch [#10260] Spec::Mocks::Mock#inspect returns way too much data</li>
+	</ul></li>
+	<li>Wilson Bilkovich
+	<ul>
+		<li>lambda {&#8230;}.should_change(obj, :message)</li>
+		<li>ar_subclass.should_have(n).errors_on(:attribute)</li>
+		<li>mock_model in Spec::Rails</li>
+	</ul></li>
+	<li>Ola Bini
+	<ul>
+		<li>Paired with Aslak to iron out minor JRuby issues.</li>
+	</ul></li>
+	<li>Mike Breen
+	<ul>
+		<li>Patch [#13098] Error running &#8220;script/spec_server&#8221; after upgrading from 1.0.5 to 1.0.8</li>
+	</ul></li>
+	<li>Ryan Carmelo Briones
+	<ul>
+		<li>Patch [#396] controllers/application.rb &lt;=&gt; spec/controllers/application_controller_spec.rb when using Alternate File</li>
+	</ul></li>
+	<li>Jake Cahoon
+	<ul>
+		<li>Patch #417 &#8211; Added additional characters to be escaped in step strings</li>
+	</ul></li>
+	<li>Roman Chernyatchik
+	<ul>
+		<li>Patch [#325] Spectask works better with multiple versions of ruby</li>
+	</ul></li>
+	<li>Wincent Colaiuta
+	<ul>
+		<li>Patch LH[#281] Invert sense of &#8220;spec &#8212;diff&#8221;</li>
+		<li>Patch [#11254] RSpec syntax coloring and function pop-up integration in TextMate</li>
+		<li>Patch [#11252] Should be able to re-load file containing shared behaviours without raising an exception</li>
+		<li>Patch [#12010] Nicer failure message formatting</li>
+		<li>Patch [#14923] Nested shared behaviours get executed twice</li>
+		<li>Patch LH[#393] should_receive no longer alters the method visibility when partially mocking an object</li>
+	</ul></li>
+	<li>Bob Cotton
+	<ul>
+		<li>Patch LH[#222] ExampleGroupFactory.default resets previously registered types.</li>
+		<li>Patch LH[#224] Nested ExampleGroups do not have a spec_path</li>
+		<li>Patch LH[#186] reintroduce ExampleGroup.description_options</li>
+		<li>Patch LH[#134] ExampleMatcher should match against before(:all)</li>
+		<li>Patch [#13118] Rinda support for Spec::Distributed</li>
+		<li>Support for context_setup and context_teardown (now before(:all) and after(:all))</li>
+		<li>Patch [#9678] Custom runner command line switch, and multi-threaded runner</li>
+		<li>Patch [#9605] Patch for ER 9472, shared behaviour</li>
+		<li>Patch [#11868] Add ability for pending to optionally hold a failing block and to fail when it passes</li>
+		<li>Patch [#12484] Allow an ExampleGroup&#8217;s Description to flow through to the Formatter</li>
+	</ul></li>
+	<li>Lachie Cox
+	<ul>
+		<li>Initial Rails support</li>
+		<li>Diffing enhancements for Objects and custom formats</li>
+	</ul></li>
+	<li>Ryan Davis
+	<ul>
+		<li>Patch LH[#321] Add eval of block passed to raise_error matcher</li>
+		<li>Assorted patches for integration with autotest</li>
+	</ul></li>
+	<li>Jonathan del Strother
+	<ul>
+		<li>Patch LH[#486] Avoid &#8216;invalid option -O&#8217; in autotest</li>
+	</ul></li>
+	<li>Ian Dees
+	<ul>
+		<li>Patch LH[#183] quiet the Story Runner backtrace</li>
+		<li>Patch [#11917] Cleaner Spec::Ui error for failed Selenium connection</li>
+	</ul></li>
+	<li>Rick DeNatale
+	<ul>
+		<li>Patch LH[#332] hash_including mock argument matcher</li>
+	</ul></li>
+	<li>Craig Demyanovich
+	<ul>
+		<li>Patch LH[#241] Add support for should_not render_template</li>
+		<li>Zach Dennis</li>
+		<li>Patch LH[#324] Consolidate :steps_for and :steps</li>
+		<li>Patch LH[#487] Add mock_model#as_new_record</li>
+	</ul></li>
+	<li>James Deville
+	<ul>
+		<li>Patch [#13451] Add a null_object option to mock_model</li>
+		<li>Patch for [#13065] Named routes throw a NoMethodError in Helper specs</li>
+	</ul></li>
+	<li>Steven Duncan
+	<ul>
+		<li>Documentation for rake task</li>
+	</ul></li>
+	<li>Eloy Duran
+	<ul>
+		<li>Patch [#11921] Adds the correct controller_name from derived_controller_name() to the ViewExampleGroupController</li>
+	</ul></li>
+	<li>Ienaga Eiji
+	<ul>
+		<li>Patch [#12156] smooth open mate patch</li>
+	</ul></li>
+	<li>Martin Emde
+	<ul>
+		<li>Fix describe Object, &#8220;description contains a # in it&#8221;</li>
+	</ul></li>
+	<li>Dayo Esho
+	<ul>
+		<li>Patch LH[#217] and_yield clobbers return value from block</li>
+	</ul></li>
+	<li>Lindsay Evans
+	<ul>
+		<li>Patch for Spec::Rails on Windows</li>
+	</ul></li>
+	<li>Nicholas Evans
+	<ul>
+		<li>Patch [#10410] redirect_to does not behave consistently with regards to query string parameter ordering</li>
+	</ul></li>
+	<li>Jens-Christian Fischer
+	<ul>
+		<li>Patch [#14388] protect_against_forgery? helper method not being picked up by rspec_on_rails</li>
+	</ul></li>
+	<li>Sean Geoghegan
+	<ul>
+		<li>Patch [#380] to add &#8212;loadby:random option</li>
+	</ul></li>
+	<li>gmarik
+	<ul>
+		<li>Patch LH[#174] to make generated view specs work properly for nested controllers</li>
+	</ul></li>
+	<li>David Goodlad
+	<ul>
+		<li>Patch for allowing non-Strings as partial_paths in view/specs</li>
+		<li>Patch for file mappings for rspec/autotest integration</li>
+	</ul></li>
+	<li>James Edward Gray II
+	<ul>
+		<li>Patch to improve syntax highlighting in TextMate</li>
+	</ul></li>
+	<li>Corey Haines
+	<ul>
+		<li>Patch [#343] include_text matcher for rails</li>
+	</ul></li>
+	<li>Coda Hale
+	<ul>
+		<li>Patch [#279] Autotest never calls the :red hook</li>
+	</ul></li>
+	<li>Kyle Hargraves
+	<ul>
+		<li>Patch [#367] Yellow pending steps in story&#8217;s text formatter</li>
+		<li>Patch [#142] verify_rcov fails with latest rcov</li>
+		<li>Patch [#10951] Odd instance variable name in rspec_model template</li>
+		<li>Patch [#11608] Exclude rspec_on_rails from plugin spec runs</li>
+		<li>Patch [#12066] Docfix for mocks/mocks.page</li>
+		<li>Patch [#12300] rr integration</li>
+	</ul></li>
+	<li>Bryan Helmkamp
+	<ul>
+		<li>Patch LH[#162] Tweak format of generated spec.opts to be more obvious</li>
+		<li>Patch LH[#163] Generate a comment about alternate mocking frameworks</li>
+		<li>Patch LH[#16] Have SimpleMatchers expose their description for specdocs</li>
+		<li>Patch [#14399] Show pending reasons in HTML report</li>
+		<li>Patch [#14095] Don&#8217;t have ./script/generate rspec create previous_failures.txt</li>
+	</ul></li>
+	<li>Chris Hoffman
+	<ul>
+		<li>Patch for spec:translate task in Spec::Rails</li>
+	</ul></li>
+	<li>Chad Humphries
+	<ul>
+		<li>Patch [#10921] Allow verify_rcov to accept greater than threshold coverage %&#8217;s via configuration</li>
+		<li>Patch [#10920] Added support for not implemented examples</li>
+	</ul></li>
+	<li>Jake Howerton
+	<ul>
+		<li>Port of Kevin Clark&#8217;s ARTS to RSpec</li>
+	</ul></li>
+	<li>Eiji Ienaga
+	<ul>
+		<li>Patch LH[#404] Fixed error in documentation</li>
+	</ul></li>
+	<li>Gerrit Kaiser
+	<ul>
+		<li>Patch LH[#230] mock(:null_object=&gt;true) plays nice with HTML</li>
+	</ul></li>
+	<li>Shintaro Kakutani
+	<ul>
+		<li>Patch LH[#235] ActionView::Base.base_view_path isn&#8217;t clear against Rails 2.0.2</li>
+		<li>Patch [#13814] RSpec on Rails w/ fixture-scenarios</li>
+		<li>Patches for coloured progress<br></li>
+		<li>Assorted Rails patches</li>
+	</ul></li>
+	<li>Nick Kallen
+	<ul>
+		<li>Tighter integration with Test::Unit for ActiveRecord fixtures. Speed up fixtures.</li>
+	</ul></li>
+	<li>Erik Kastner
+	<ul>
+		<li>Patch to rename file_list to spec_file_list in spectask.rake (to avoid conflicts w/ other tools)</li>
+	</ul></li>
+	<li>Brandon Keepers
+	<ul>
+		<li>Patch [#15465] Edge rails #8115 changed plugin loading, causing conflict between rspec and rails plugin</li>
+		<li>Patch [#13881] Dynamically include Helpers that are included on ActionView::Base</li>
+	</ul></li>
+	<li>Kero
+	<ul>
+		<li>Patch to add step_upcoming to story listeners.</li>
+	</ul></li>
+	<li>Rich Kilmer
+	<ul>
+		<li>Underscore syntactic sugar</li>
+	</ul></li>
+	<li>Ryan Kinderman
+	<ul>
+		<li>Patch [#12935] Remove requirement that mocha must be installed as a gem when used as mocking framework.</li>
+	</ul></li>
+	<li>Josh Knowles
+	<ul>
+		<li>Patch LH[#197] Use ActiveSupport&#8217;s Inflector (when available) to make &#8216;should have&#8217; read a bit better.</li>
+		<li>Patch LH[#193] support &#8216;string_or_response.should have_text(&#8230;)&#8217;</li>
+		<li>Patch [#149]  Update contribute page to point towards lighthouse</li>
+		<li>Patch [#147] Allow stories to use Spec::Matchers</li>
+		<li>Patch [#10245] Patch to HTML escape the behavior name when using HTML Formatter</li>
+		<li>Patch [#11221] Autotest support does not work w/o Rails Gem installed</li>
+	</ul></li>
+	<li>Jens Krämer
+	<ul>
+		<li>Patch [#12701] Allow checking of content captured with content_for in view specs</li>
+	</ul></li>
+	<li>Michal Kwiatkowski
+	<ul>
+		<li>Patch to get RSpec to work w/ Heckle +/- 1.2</li>
+	</ul></li>
+	<li>Jarkko Laine
+	<ul>
+		<li>LH[#132] Plain Text stories should support Given and Given:</li>
+	</ul></li>
+	<li>Luis Lavena
+	<ul>
+		<li>LH[#244] No coloured output on Windows due missing RUBYOPT</li>
+	</ul></li>
+	<li>Alexander Lang
+	<ul>
+		<li>Patch [#198] clean up story steps after each story</li>
+	</ul></li>
+	<li>Matthijs Langenberg
+	<ul>
+		<li>Patch [#12682] Not correctly aliasing original &#8216;stub!&#8217; and &#8216;should_receive&#8217; methods for ApplicationController</li>
+		<li>Patch [#12719] rspec_on_rails should not include pagination helper</li>
+	</ul></li>
+	<li>Evan Light
+	<ul>
+		<li>Patch [#13913] Scenario should treat no code block as pending</li>
+	</ul></li>
+	<li>Mikko Lehtonen
+	<ul>
+		<li>Patch LH[#178] small annoyances running specs with warnings enabled</li>
+	</ul></li>
+	<li>Will Leinweber
+	<ul>
+		<li>Patch [#13339] Add the ability for spec_parser to parse describes with :behaviour_type set (with Dav Yaginuma)</li>
+	</ul></li>
+	<li>Ian Leitch
+	<ul>
+		<li>Patch LH[#226] Add lib/ specs to &#8216;rake stats&#8217;</li>
+		<li>Patch [#11888] rspec_on_rails spews out warnings when assert_select is used with an XML response</li>
+		<li>Patch [#12817] Cannot include same shared behaviour when required with absolute paths.</li>
+		<li>Patch [#13952] Fix for performance regression introduced in r2096</li>
+		<li>Patch [#13943] ProfileFormatter (Top 10 slowest examples)</li>
+		<li>Patch [#14023] Small optimization for heavily proxied objects.</li>
+	</ul></li>
+	<li>Jay Levitt
+	<ul>
+		<li>Patch [#13143] ActionView::Helpers::RecordIdentificationHelper should be included if present</li>
+		<li>Patch [#13016] [DOC] Point out that view specs render, well, a view</li>
+	</ul></li>
+	<li>Tim Lucas
+	<ul>
+		<li>Patch [#10631] redirect_to matcher doesn&#8217;t respect request.host</li>
+	</ul></li>
+	<li>Riley Lynch
+	<ul>
+		<li>Patches for the rake task</li>
+	</ul></li>
+	<li>Ben Mabey
+	<ul>
+		<li>Patch for story runner exit code.</li>
+	</ul></li>
+	<li>Dan Manges
+	<ul>
+		<li>Fixed visibility problem for ActionController::Base#render in Spec::Rails</li>
+	</ul></li>
+	<li>Mike Mangino
+	<ul>
+		<li>Patch [#14043] Change output ordering to show pending before errors</li>
+		<li>Patch for [#13370] Weird mock expectation error</li>
+		<li>Patch for [#13065] Named routes throw a NoMethodError in Helper specs</li>
+	</ul></li>
+	<li>Micah Martin
+	<ul>
+		<li>Spec::Rails patches for partials</li>
+	</ul></li>
+	<li>James Mead
+	<ul>
+		<li>Modified mocha to allow for its use outside of test/unit</li>
+	</ul></li>
+	<li>Adam Meehan
+	<ul>
+		<li>Patch LH[#267] Setting mock_model object id with stubs hash</li>
+		<li>Patch LH[#448] fix to_param in mock_model returning auto id when passed stubbed id</li>
+	</ul></li>
+	<li>Mathias Meyer
+	<ul>
+		<li>Patch LH[#548] Previously stubbed method doesn&#8217;t fail on should_not_receive</li>
+	</ul></li>
+	<li>Saimon Moore
+	<ul>
+		<li>Patch LH[#14] Adding support for by_at_least/by_at_most in Change matcher.</li>
+	</ul></li>
+	<li>Curtis Miller
+	<ul>
+		<li>[#13336] Helper directory incorrect for rake stats in statsetup task</li>
+	</ul></li>
+	<li>Kyosuke MOROHASHI
+	<ul>
+		<li>Patch [#11807] Daemonize spec_server and rake tasks to manage them.</li>
+	</ul></li>
+	<li>Rick Olson
+	<ul>
+		<li>Patch to get rspec_on_rails working with rails edge (&gt;= 8862)</li>
+	</ul></li>
+	<li>Bret Pettichord
+	<ul>
+		<li>Patch [#10473] obj.should exist (new matcher)</li>
+	</ul></li>
+	<li>Tim Pope
+	<ul>
+		<li>Patch LH[#413] Disable color codes on STDOUT when STDOUT.tty? is false</li>
+	</ul></li>
+	<li>Matt Patterson
+	<ul>
+		<li>Patch [#440] to add failing example of before filters running twice.</li>
+	</ul></li>
+	<li>Matthew Peychich
+	<ul>
+		<li>Array =~ matcher works with subclasses of Array</li>
+	</ul></li>
+	<li>Carl Porth
+	<ul>
+		<li>Patch [#12174] mishandling of paths with spaces in spec_mate switch_command</li>
+		<li>Patch [#12237] (tiny) added full path to mate in switch_command</li>
+		<li>Patch [#12722] the alternate file command does not work in rails views due to scope</li>
+	</ul></li>
+	<li>Jay Phillips
+	<ul>
+		<li>Patch [#11615] Partial mock methods give ambiguous failures when given a method name as a String</li>
+		<li>Patch [#13274] ThrowSymbol recognized a NameError triggered by Kernel#method_missing as a thrown Symbol</li>
+	</ul></li>
+	<li>Yurii Rashkovskii
+	<ul>
+		<li>Patch [#13833] ActionView::Helpers::JavaScriptMacrosHelper removed after 1.2.3</li>
+		<li>Patch to improve generated descriptions for the &#8220;be&#8221; matcher</li>
+		<li>Patch [#12611] should_not redirect_to implementation</li>
+	</ul></li>
+	<li>Luke Redpath
+	<ul>
+		<li>TextMate bundle</li>
+		<li>Readable HTML output!</li>
+	</ul></li>
+	<li>Patrick Ritchie
+	<ul>
+		<li>Patch LH[#274] support &#8212;drb in spec.opts</li>
+	</ul></li>
+	<li>Steve Ross
+	<ul>
+		<li>Patch [#9132] Rakefile spec:doc can fail without preparing database</li>
+	</ul></li>
+	<li>Arthur Schreiber
+	<ul>
+		<li>Patch LH[#457] PositiveOperatorMatcher and NegativeOperatorMatcher fail when #send is overwritten</li>
+	</ul></li>
+	<li>Nick Sieger
+	<ul>
+		<li>Spec::Rails patches for stats</li>
+	</ul></li>
+	<li>Daniel Siemssen
+	<ul>
+		<li>Spec::Rails patches for spec_server</li>
+	</ul></li>
+	<li>Nathan Sobo
+	<ul>
+		<li>Specmate + drb fix</li>
+	</ul></li>
+	<li>Jon Strother
+	<ul>
+		<li>Patch LH[#344] spec_server reloads fixtures</li>
+	</ul></li>
+	<li>Trevor Squires
+	<ul>
+		<li>Patch LH[#12] Fix for TM when switching to alternate file</li>
+	</ul></li>
+	<li>Nathan Sutton
+	<ul>
+		<li>Patch [#15659] GivenScenario fails when it is a RailsStory</li>
+	</ul></li>
+	<li>Kouhei Sutou
+	<ul>
+		<li>Patches for Emacs</li>
+		<li>Handling of Interrupt</li>
+	</ul></li>
+	<li>Antti Tarvainen
+	<ul>
+		<li>Patch LH[#333] Fixed bug where rspec loads files repeatedly when running heckle</li>
+		<li>Patch LH[#280] Fixed bug where heckle runs rspec runs heckle runs rspec etc.</li>
+		<li>Patch [#14254] Improved error handling for Object#should and Object#should_not</li>
+		<li>Patch [#14186] Remove dead code from message_expecation.rb</li>
+		<li>Patch [#14183] Tiny improvement on mock_spec.rb</li>
+		<li>Patch [#14208] Fix to Mock#method_missing raising NameErrors instead of MockExpectationErrors</li>
+		<li>Patch [#14255] Fixed examples in mock_spec.rb and shared_behaviour_spec.rb</li>
+		<li>Patch [#14156] False positives with should_not</li>
+		<li>Patch [#14170] route_for and params_from internal specs fixed</li>
+		<li>Patch [#14142] Fix for bug #11602: Nested #have_tag specifications fails on the wrong line number</li>
+		<li>Patch [#10315] to fix pre_commit bug 10313 &#8211; pre_commit_rails: doesn&#8217;t always build correctly</li>
+		<li>Patch [#11500] Documentation: no rails integration specs in 1.0</li>
+	</ul></li>
+	<li>Scott Taylor
+	<ul>
+		<li>Patch [#11919] Making non-implemented specs easy in textmate</li>
+		<li>Patch [#13078] Develop rspec with autotest</li>
+		<li>Patch [#12986] Autotest Specs + Refactoring</li>
+		<li>Patch [#11509] Documentation &#8211; RSpec requires hpricot</li>
+		<li>Patch [#9509] allow spaced options in spec.opts</li>
+		<li>Patch [#9510] Added html formatter spec file for Ruby 1.8.6</li>
+		<li>Patch [#9511] Clarification to README file in spec/</li>
+		<li>Patch [#9852] Patch for RSpec&#8217;s Website using Webgen 0.4.2</li>
+		<li>Patch [#9925] Changed &#8220;.rhtml&#8221; to &#8220;template&#8221; in REST spec generator</li>
+		<li>Patch [#9926] Rakefile &#8211; RSPEC_DEPS constant as an Array of Hashes instead of an Array of Arrays</li>
+		<li>Patch [#10636] Added spec for OptionParser in Runner (Patch from Scott Taylor)</li>
+		<li>Patch LH[#326] Deprecation warnings for specs that assume auto-inclusion of modules</li>
+		<li>Patch LH[#524] Privatize Have#method_missing and enhance its respond_to?</li>
+		<li>Patch LH[#485] Add file and line numbers to pending specs</li>
+	</ul></li>
+	<li>Steve Tendon
+	<ul>
+		<li>Patch [#9458] The rspec_scaffold generator does not take into account class nesting</li>
+	</ul></li>
+	<li>Jonathan Tron
+	<ul>
+		<li>Patch for Spec::Rails resource_generator</li>
+		<li>Patch for RSpec.tmbundle to make it work with RSpec installed as a plugin</li>
+	</ul></li>
+	<li>Mark Van Holstyn
+	<ul>
+		<li>Patch LH[#15] Reverse loading of ActionView::Base helper modules</li>
+		<li>Patch [#134] Only load spec inside spec_helper.rb</li>
+	</ul></li>
+	<li>Mike Vincent
+	<ul>
+		<li>Patch LH[#181] Regression on generators due to internal changes in rails edge</li>
+	</ul></li>
+	<li>Rupert Voelcker
+	<ul>
+		<li>Patch [#13567] patch to allow stubs to yield consecutive values</li>
+		<li>Patch [#13559] reverse version of route_for</li>
+	</ul></li>
+	<li>Florian Weber
+	<ul>
+		<li>RSpec.tmbundle and the spec_server that comes with Spec::Rails are based on Florian&#8217;s TDDMate</li>
+	</ul></li>
+	<li>Nikolai Weibull
+	<ul>
+		<li>Core patches for spec names</li>
+	</ul></li>
+	<li>Jim Weirich
+	<ul>
+		<li>Modified flexmock to allow for its use outside of test/unit</li>
+		<li>Supplied plugin patch to support flexmock directly in rspec</li>
+	</ul></li>
+	<li>Ian White
+	<ul>
+		<li>Patch LH[#271] Since @template.finder, isolation mode doesn&#8217;t work</li>
+		<li>Patch for [#11545] Rspec doesn&#8217;t handle should_receive on ActiveRecord associations</li>
+	</ul></li>
+	<li>Joseph Wilk
+	<ul>
+		<li>Patch LH[#300] Showing Story/Scenario Failure Fix for HTML Story formatter</li>
+		<li>Patch LH[#439] Showing Story/Scenario Failure Fix for Plain Text Story formatter</li>
+	</ul></li>
+	<li>Mike Williams
+	<ul>
+		<li>Patch LH[#276] to support the lib directory in rails apps with the Textmate Alternate File command.</li>
+		<li>Core patches for arbitrary comparisons like 5.should_be &lt; 6</li>
+	</ul></li>
+	<li>Chad Wooley
+	<ul>
+		<li>Patch to mocks to make it possible to specify raised exception instance</li>
+	</ul></li>
+	<li>Dav Yaginuma
+	<ul>
+		<li>Patch [#13339] Add the ability for spec_parser to parse describes with :behaviour_type set (with Will Leinweber)</li>
+	</ul></li>
+</ul>
+<p>If you think your name ought to be here, please contact the RSpec team.</p>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>

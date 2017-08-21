@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: Before and After</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/">RSpec</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/documentation/before_and_after.html">Before and After</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>Before and After</h2>
+<h3>before(:each) and after(:each)</h3>
+<p>RSpec provides methods that let you set up and tear down state before(:each)<br />
+and after(:each) example.</p>
+<div class="CodeRay">
+<pre>describe <span class="co">Account</span> <span class="r">do</span>
+  before(<span class="sy">:each</span>) <span class="r">do</span>
+    <span class="iv">@account</span> = <span class="co">Account</span>.new
+  <span class="r">end</span>
+
+  it <span class="s"><span class="dl">&quot;</span><span class="k">should have a balance of $0</span><span class="dl">&quot;</span></span> <span class="r">do</span>
+    <span class="iv">@account</span>.balance.should == <span class="co">Money</span>.new(<span class="i">0</span>)
+  <span class="r">end</span>
+  
+  after(<span class="sy">:each</span>) <span class="r">do</span>
+    <span class="c"># this is here as an example, but is not really</span>
+    <span class="c"># necessary. Since each example is run in its</span>
+    <span class="c"># own object, instance variables go out of scope</span>
+    <span class="c"># between each example.</span>
+    <span class="iv">@account</span> = <span class="pc">nil</span>
+  <span class="r">end</span>
+<span class="r">end</span>
+</pre>
+</div>
+<p>Note that after(:each) is rarely needed, and should only really be used when concerned<br />
+that some state might be leaking into your other examples.</p>
+<h3>before(:all) and after(:all)</h3>
+<p>For expensive operations, like opening browsers using Spec::Ui, RSpec also allows<br />
+you to set up and tear down state before(:all) and after(:all) examples in any<br />
+given behaviour.</p>
+<div class="CodeRay">
+<pre>describe <span class="s"><span class="dl">&quot;</span><span class="k">Search page</span><span class="dl">&quot;</span></span> <span class="r">do</span>
+  before(<span class="sy">:all</span>) <span class="r">do</span>
+    <span class="iv">@browser</span> = <span class="co">Watir</span>::<span class="co">Browser</span>.new
+  <span class="r">end</span>
+
+  it <span class="s"><span class="dl">&quot;</span><span class="k">should find all contacts</span><span class="dl">&quot;</span></span> <span class="r">do</span>
+    ...
+  <span class="r">end</span>
+  
+  after(<span class="sy">:all</span>) <span class="r">do</span>
+    <span class="iv">@browser</span>.kill! <span class="r">rescue</span> <span class="pc">nil</span>
+  <span class="r">end</span>
+<span class="r">end</span>
+</pre>
+</div>
+<h3>Global after and before blocks</h3>
+<p>Sometimes you have some generic code you want to run before or after every single one of your<br />
+examples. Such global before and after blocks can be defined in the RSpec configuration, which<br />
+typically lives in a spec_helper.rb file that is required from other spec files. Example:</p>
+<div class="CodeRay">
+<pre><span class="co">Spec</span>::<span class="co">Runner</span>.configure <span class="r">do</span> |config|
+  config.before(<span class="sy">:all</span>) {}
+  config.before(<span class="sy">:each</span>) {}
+  config.after(<span class="sy">:all</span>) {}
+  config.after(<span class="sy">:each</span>) {}
+<span class="r">end</span>
+</pre>
+</div>
+<p>Global before blocks get run before local ones. Global after blocks get run after local ones.</p>
+<p>You can also specify that a before or after block should only be weaved into certain behaviours,<br />
+in a similar way to how global includes are declared:</p>
+<div class="CodeRay">
+<pre><span class="co">Spec</span>::<span class="co">Runner</span>.configure <span class="r">do</span> |config|
+  config.before(<span class="sy">:each</span>, <span class="sy">:type</span> =&gt; <span class="sy">:controller</span>) <span class="r">do</span>
+    login_aslak
+  <span class="r">end</span>
+<span class="r">end</span>
+</pre>
+</div>
+<h3>When before and after raise errors</h3>
+<p>If a before block raises an error, none of the following before blocks (if any) or the example itself will get run.<br />
+If an after block raises an error, the remaining ones will still be run.</p>
+<h3><span style="font-weight:bold; color:red;">WARNING ABOUT before(:all) and after(:all)</span></h3>
+<p>It is very tempting to use before(:all) and after(:all) for situations in which it<br />
+is not appropriate. before(:all) shares some (not all) state across multiple examples. This means<br />
+that the examples become bound together, which is an absolute no-no in testing. You<br />
+should really only ever use before(:all) to set up things that are global collaborators<br />
+but not the things that you are describing in the examples.</p>
+<p>The most common cases of abuse are database access and/or fixture setup. Every example<br />
+that accesses the database should start with a clean slate, otherwise the examples become<br />
+brittle and start to lose their value with false negatives and, worse, false positives.</p>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>

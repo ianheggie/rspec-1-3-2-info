@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: Controllers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/rails/">Spec::Rails</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/rails/writing/">Writing</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/rails/writing/controllers.html">Controllers</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>Controllers</h2>
+<p>Controller Examples live in $RAILS_ROOT/spec/controllers/.</p>
+<p>In contrast to Test::Unit, where the controller is initialized in the <code>setup</code> method,<br />
+with Spec::Rails you don&#8217;t. Instead, pass the controller class to the describe method.<br />
+Spec::Rails automatically instantiates a controller for you, which you can access<br />
+from the examples (it blocks) using the <code>controller</code> method.</p>
+<h2>Isolation from views</h2>
+<p>By default, Spec::Rails will run your controller actions in isolation from<br />
+their related views. This allows you to spec your controllers before the views<br />
+even exist, and will keep the specs from failing when there are errors in your<br />
+views.</p>
+<h2>Optional integration with views</h2>
+<p>If you prefer to integrate views (a la rails functional testing) you can by including<br />
+the keyword/commmand &#8220;integrate_views&#8221;.</p>
+<div class="CodeRay">
+<pre>describe <span class="co">ArticlesController</span> <span class="r">do</span>
+  integrate_views
+  ...
+<span class="r">end</span>
+</pre>
+</div>
+<p>When you integrate views in the controller specs, you can use any of the<br />
+expectations that are specific to views as well. Read about <a href="views.html">View Examples</a><br />
+to learn more.</p>
+<h2>Isolation from the database</h2>
+<p>We strongly recommend that you use RSpec&#8217;s <a href="../../rspec-1-3-2-info/documentation/mocks/index.html">mocking/stubbing framework</a><br />
+to intercept class level calls like <code>:find</code>, <code>:create</code> and<br />
+even <code>:new</code> to introduce mock instances instead of real active_record instances.</p>
+<p>This allows you to focus your specs on the things that the controller does and not<br />
+worry about complex validations and relationships that should be described in<br />
+detail in the <a href="models.html">Model Examples</a></p>
+<div class="CodeRay">
+<pre>account = mock_model(<span class="co">Account</span>)
+<span class="co">Account</span>.should_receive(<span class="sy">:find</span>).with(<span class="s"><span class="dl">&quot;</span><span class="k">37</span><span class="dl">&quot;</span></span>).and_return(account)
+</pre>
+</div>
+<p>or</p>
+<div class="CodeRay">
+<pre>account = mock_model(<span class="co">Account</span>)
+<span class="co">Account</span>.stub!(<span class="sy">:find</span>).and_return(account)
+</pre>
+</div>
+<p>See <a href="../../rspec-1-3-2-info/documentation/mocks/index.html">Mocks and Stubs</a> for more information about the<br />
+built in mocking/stubbing framework.</p>
+<h2>Response Expectations</h2>
+<p>These expectations will work whether in isolation or integration mode. See <a href="../../../rdoc-rails/index.html">Spec::Rails::Expectations</a> for details.</p>
+<h3>response.should be_success</h3>
+<p>Passes if a status of 200 was returned. NOTE that in isolation mode, this will<br />
+always return true, so it&#8217;s not that useful &#8211; but at least your specs won&#8217;t break.</p>
+<div class="CodeRay">
+<pre>response.should be_success
+</pre>
+</div>
+<h3>response.should be_redirect</h3>
+<p>Passes if a status of 300-399 was returned.</p>
+<div class="CodeRay">
+<pre>response.should be_redirect
+</pre>
+</div>
+<h3>response.should render_template</h3>
+<div class="CodeRay">
+<pre>get <span class="s"><span class="dl">'</span><span class="k">some_action</span><span class="dl">'</span></span>
+response.should render_template(<span class="s"><span class="dl">&quot;</span><span class="k">path/to/template/for/action</span><span class="dl">&quot;</span></span>)
+</pre>
+</div>
+<h3>response.should have_text</h3>
+<div class="CodeRay">
+<pre>get <span class="s"><span class="dl">'</span><span class="k">some_action</span><span class="dl">'</span></span>
+response.should have_text(<span class="s"><span class="dl">&quot;</span><span class="k">expected text</span><span class="dl">&quot;</span></span>)
+</pre>
+</div>
+<h3>response.should redirect_to</h3>
+<div class="CodeRay">
+<pre>get <span class="s"><span class="dl">'</span><span class="k">some_action</span><span class="dl">'</span></span>
+response.should redirect_to(<span class="sy">:action</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">other_action</span><span class="dl">'</span></span>)
+</pre>
+</div>
+<p>The following forms are supported:</p>
+<div class="CodeRay">
+<pre>response.should redirect_to(<span class="sy">:action</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">other_action</span><span class="dl">'</span></span>)
+response.should redirect_to(<span class="s"><span class="dl">'</span><span class="k">path/to/local/redirect</span><span class="dl">'</span></span>)
+response.should redirect_to(<span class="s"><span class="dl">'</span><span class="k">http://test.host/some_controller/some_action</span><span class="dl">'</span></span>)
+response.should redirect_to(<span class="s"><span class="dl">'</span><span class="k">http://some.other.domain.com</span><span class="dl">'</span></span>)
+</pre>
+</div>
+<h3>assigns, flash and session</h3>
+<p>Use these to access assigns, flash and session.</p>
+<div class="CodeRay">
+<pre>assigns[<span class="sy">:key</span>]
+flash[<span class="sy">:key</span>]
+session[<span class="sy">:key</span>]
+</pre>
+</div>
+<h2>Routing Expectations</h2>
+<p>Specify the paths generated by custom routes.</p>
+<div class="CodeRay">
+<pre>route_for(<span class="sy">:controller</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">hello</span><span class="dl">&quot;</span></span>, <span class="sy">:action</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">world</span><span class="dl">&quot;</span></span>).should == <span class="s"><span class="dl">&quot;</span><span class="k">/hello/world</span><span class="dl">&quot;</span></span>
+</pre>
+</div>
+<p>Specify the parameters generated from routes.</p>
+<div class="CodeRay">
+<pre>params_from(<span class="sy">:get</span>, <span class="s"><span class="dl">&quot;</span><span class="k">/hello/world</span><span class="dl">&quot;</span></span>).should == {<span class="sy">:controller</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">hello</span><span class="dl">&quot;</span></span>, <span class="sy">:action</span> =&gt; <span class="s"><span class="dl">&quot;</span><span class="k">world</span><span class="dl">&quot;</span></span>}
+</pre>
+</div>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>

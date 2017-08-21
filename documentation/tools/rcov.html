@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: RCov</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/">RSpec</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/tools/">Tools</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/documentation/tools/rcov.html">RCov</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>RCov</h2>
+<p>RSpec has tight integration with <a href="http://eigenclass.org/hiki.rb?rcov">RCov</a>, the excellent code coverage tool for Ruby.</p>
+<h3>Running specs with RCov</h3>
+<p>The easiest way to use RCov with RSpec is from a rake script (Rakefile), using RSpec&#8217;s<br />
+<a href="rake.html">Rake task</a>. The snippet below is from RSpec&#8217;s own Rakefile.</p>
+<div class="CodeRay">
+<pre>require <span class="s"><span class="dl">'</span><span class="k">rake</span><span class="dl">'</span></span>
+require <span class="s"><span class="dl">'</span><span class="k">spec/rake/spectask</span><span class="dl">'</span></span>
+
+desc <span class="s"><span class="dl">&quot;</span><span class="k">Run all examples with RCov</span><span class="dl">&quot;</span></span>
+<span class="co">Spec</span>::<span class="co">Rake</span>::<span class="co">SpecTask</span>.new(<span class="s"><span class="dl">'</span><span class="k">examples_with_rcov</span><span class="dl">'</span></span>) <span class="r">do</span> |t|
+  t.spec_files = <span class="co">FileList</span>[<span class="s"><span class="dl">'</span><span class="k">examples/**/*.rb</span><span class="dl">'</span></span>]
+  t.rcov = <span class="pc">true</span>
+  t.rcov_opts = [<span class="s"><span class="dl">'</span><span class="k">--exclude</span><span class="dl">'</span></span>, <span class="s"><span class="dl">'</span><span class="k">examples</span><span class="dl">'</span></span>]
+<span class="r">end</span></pre>
+</div>
+<p>By adding <code>rcov=true</code> to the rake task, specs will be run with RCov<br />
+instead of the standard ruby interpreter, and a coverage report like <br />
+<a href="../../coverage/index.html">this</a> will be generated with the following command line:</p>
+<pre>
+rake examples_with_rcov
+</pre>
+<p>Also, because you don&#8217;t want your example files to be included in the coverage report (you just<br />
+want them to run), don&#8217;t forget to add <code>t.rcov_opts = ['--exclude', 'examples']</code>. You<br />
+can use this to exclude any other files that must be required but should not be measured (just<br />
+use a comma separated list).</p>
+<h3>Coverage threshold</h3>
+<p>You can guard your codebase&#8217;s coverage from dropping below a certain threshold<br />
+by using RSpec&#8217;s built-in task for verification of the total RCov coverage. <br />
+(This is not the same as RCov&#8217;s &#8212;threshold option, which is a filtering mechanism).</p>
+<div class="CodeRay">
+<pre>require <span class="s"><span class="dl">'</span><span class="k">rake</span><span class="dl">'</span></span>
+require <span class="s"><span class="dl">'</span><span class="k">spec/rake/verify_rcov</span><span class="dl">'</span></span>
+
+<span class="co">RCov</span>::<span class="co">VerifyTask</span>.new(<span class="sy">:verify_rcov</span> =&gt; <span class="s"><span class="dl">'</span><span class="k">spec:rcov</span><span class="dl">'</span></span>) <span class="r">do</span> |t|
+  t.threshold = <span class="fl">100.0</span>
+  t.index_html = <span class="s"><span class="dl">'</span><span class="k">coverage/index.html</span><span class="dl">'</span></span>
+<span class="r">end</span>
+</pre>
+</div>
+<p>This will give you a :verify_rcov task that will fail your build if the<br />
+coverage drops below the threshold you define.<br />
+If it&#8217;s too low you&#8217;re encouraged to write more specs rather than &#8220;fix&#8221;<br />
+the threshold value (which should usually only be adjusted upwards).</p>
+<p>In fact, the task will also fail the build if the coverage raises above the threshold as well.<br />
+This might seem a bit counterintuitive, but this is when you should go and raise the<br />
+threshold in your Rakefile. This way you won&#8217;t miss temporary coverage increases. Crank it up!<br />
+This is how we got to 100% coverage for RSpec.</p>
+<p>See <a href="../../rdoc/classes/RCov/VerifyTask.html">RCov::VerifyTask</a> for details.</p>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>

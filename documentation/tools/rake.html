@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: Rake Tasks</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/">RSpec</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/tools/">Tools</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/documentation/tools/rake.html">Rake Tasks</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>Rake Tasks</h2>
+<p>RSpec comes with a <a href="http://rake.rubyforge.org/">Rake</a> task for executing specs.<br />
+See <a href="http://rspec.rubyforge.org/rspec/1.1.12/classes/Spec/Rake/SpecTask.html">Spec::Rake::SpecTask</a> API for details.</p>
+<h3>Rake task example</h3>
+<p>This is a snippet from RSpec&#8217;s own Rakefile. It creates a task to run the examples.</p>
+<div class="CodeRay">
+<pre>require <span class="s"><span class="dl">'</span><span class="k">rake</span><span class="dl">'</span></span>
+require <span class="s"><span class="dl">'</span><span class="k">spec/rake/spectask</span><span class="dl">'</span></span>
+
+desc <span class="s"><span class="dl">&quot;</span><span class="k">Run all examples</span><span class="dl">&quot;</span></span>
+<span class="co">Spec</span>::<span class="co">Rake</span>::<span class="co">SpecTask</span>.new(<span class="s"><span class="dl">'</span><span class="k">examples</span><span class="dl">'</span></span>) <span class="r">do</span> |t|
+  t.spec_files = <span class="co">FileList</span>[<span class="s"><span class="dl">'</span><span class="k">examples/**/*.rb</span><span class="dl">'</span></span>]
+<span class="r">end</span>
+</pre>
+</div>
+<p>It can be invoked from the command line with:</p>
+<pre>
+rake examples
+</pre>
+<p>Also see the <a href="rcov.html">RCov</a> page for info about how to generate a coverage report.</p>
+<h3>Generate HTML report</h3>
+<div class="CodeRay">
+<pre>require <span class="s"><span class="dl">'</span><span class="k">rake</span><span class="dl">'</span></span>
+require <span class="s"><span class="dl">'</span><span class="k">spec/rake/spectask</span><span class="dl">'</span></span>
+
+desc <span class="s"><span class="dl">&quot;</span><span class="k">Generate HTML report for failing examples</span><span class="dl">&quot;</span></span>
+<span class="co">Spec</span>::<span class="co">Rake</span>::<span class="co">SpecTask</span>.new(<span class="s"><span class="dl">'</span><span class="k">failing_examples_with_html</span><span class="dl">'</span></span>) <span class="r">do</span> |t|
+  t.spec_files = <span class="co">FileList</span>[<span class="s"><span class="dl">'</span><span class="k">failing_examples/**/*.rb</span><span class="dl">'</span></span>]
+  t.spec_opts = [<span class="s"><span class="dl">&quot;</span><span class="k">--format</span><span class="dl">&quot;</span></span>, <span class="s"><span class="dl">&quot;</span><span class="k">html:doc/reports/tools/failing_examples.html</span><span class="dl">&quot;</span></span>, <span class="s"><span class="dl">&quot;</span><span class="k">--diff</span><span class="dl">&quot;</span></span>]
+  t.fail_on_error = <span class="pc">false</span>
+<span class="r">end</span></pre>
+</div>
+<p>This will write a HTML file that looks like <a href="failing_examples.html">this</a>.</p>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>

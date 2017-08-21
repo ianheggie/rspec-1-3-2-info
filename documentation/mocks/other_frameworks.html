@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{lang:}">
+  <head>
+    <title>RSpec.info: Other Mock/Stub Frameworks</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="RSpec, {title: }, BDD, behaviour driven development, behavior driven development, TDD, test driven development, Ruby, Rails, testing, watir, selenium"/>
+
+    <!-- CodeRay syntax highlighting CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/coderay.css" type="text/css" />
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/breadcrumbs.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/rspec-1-3-2-info/css/default.css" type="text/css" media="screen, projection" />
+
+    <style><!--
+    div.breadcrumbs ul li {
+    	background-image: url(/images/arrow.gif);
+    }
+    --></style>
+  </head>
+<body>
+
+<div id="container">
+  <div id="header">
+    <h1><a href="/rspec-1-3-2info/">rspec-1.3.2 | rspec-rails-1.3.4</a></h1>
+  </div>
+
+  <div class="breadcrumb-menu">      <div class="breadcrumbs">
+        <ul>
+        
+          
+            <li><a href="/rspec-1-3-2-info/">Home</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/">RSpec</a></li>
+          
+        
+          
+            <li><a href="/rspec-1-3-2-info/documentation/mocks/">Mocks and Stubs</a></li>
+          
+        
+          
+            <li class="current"><a href="/rspec-1-3-2-info/documentation/mocks/other_frameworks.html">Other Mock/Stub Frameworks</a></li>
+          
+        
+        </ul>
+      </div>
+      <div class="menu">
+        <ul>
+        
+        
+        
+                </ul>
+      </div>
+</div>
+
+  <div id="content">
+    <h2>Other Mock/Stub Frameworks</h2>
+<p>If you prefer to use a mocking framework other than RSpec&#8217;s built in framework, you can do this quite simply. RSpec currently supports use of the following frameworks out of the box (in alphabetical order):</p>
+<ul>
+	<li><a href="http://flexmock.rubyforge.org/">flexmock</a></li>
+	<li><a href="http://mocha.rubyforge.org">mocha</a></li>
+	<li><a href="http://rubyforge.org/projects/pivotalrb/">rr</a></li>
+</ul>
+<p>RSpec supports use of a single framework per project, because these frameworks (including) RSpec&#8217;s own, tend to add methods to Object that might or might not work well together. To choose a mock framework other than rspec, simply add the following to spec/spec_helper.rb (or any file that gets loaded when you run your examples):</p>
+<div class="CodeRay">
+<pre><span class="co">Spec</span>::<span class="co">Runner</span>.configure <span class="r">do</span> |config|
+  config.mock_with <span class="sy">:rr</span>
+<span class="r">end</span>
+</pre>
+</div>
+<p>Valid options are <code>:flexmock</code>, <code>:mocha</code>, <code>:rspec</code> (of course), and <code>:rr</code>.</p>
+<h2>Even more &#8220;other&#8221; frameworks</h2>
+<p>If you have a different framework that is not supported directly by RSpec, you can easily choose that framework instead by creating an adapter and telling RSpec where to find it. Here is RSpec&#8217;s own adapter as an example:</p>
+<div class="CodeRay">
+<pre>require <span class="s"><span class="dl">'</span><span class="k">spec/mocks/framework</span><span class="dl">'</span></span>
+require <span class="s"><span class="dl">'</span><span class="k">spec/mocks/extensions</span><span class="dl">'</span></span>
+
+<span class="r">module</span> <span class="cl">Spec</span>
+  <span class="r">module</span> <span class="cl">Adapters</span>
+    <span class="r">unless</span> <span class="r">defined?</span>(<span class="co">MockFramework</span>)
+      <span class="r">module</span> <span class="cl">MockFramework</span>
+        include <span class="co">Spec</span>::<span class="co">Mocks</span>::<span class="co">ExampleMethods</span>
+        <span class="r">def</span> <span class="fu">setup_mocks_for_rspec</span>
+          <span class="gv">$rspec_mocks</span> ||= <span class="co">Spec</span>::<span class="co">Mocks</span>::<span class="co">Space</span>.new
+        <span class="r">end</span>
+        <span class="r">def</span> <span class="fu">verify_mocks_for_rspec</span>
+          <span class="gv">$rspec_mocks</span>.verify_all
+        <span class="r">end</span>
+        <span class="r">def</span> <span class="fu">teardown_mocks_for_rspec</span>
+          <span class="gv">$rspec_mocks</span>.reset_all
+        <span class="r">end</span>
+      <span class="r">end</span>
+    <span class="r">end</span>
+  <span class="r">end</span>
+<span class="r">end</span>
+</pre>
+</div>
+<p>This file must require any libraries or resources that implement the framework, and then define a <code>Spec::Plugins::MockFramework</code> module with the following methods:</p>
+<ul>
+	<li><code>setup_mocks_for_rspec</code> is called before each example is run.</li>
+	<li><code>verify_mocks_for_rspec</code> is called after each example is run. Use this if you want RSpec to automatically verify your mocks after each example. You must supply this method either way, but you can leave it empty if your framework doesn&#8217;t support auto-verification.</li>
+	<li><code>teardown_mocks_for_rspec</code> is guaranteed to be run after each example even when there are errors. Use this to ensure that there is no state shared across example, clearing out changes to static resources like class-level mock expectations, etc.</li>
+</ul>
+<p>Once you have defined your adapter, you can then tell RSpec to use your adapter like so:</p>
+<div class="CodeRay">
+<pre><span class="co">Spec</span>::<span class="co">Runner</span>.configure <span class="r">do</span> |config|
+  config.mock_with <span class="s"><span class="dl">'</span><span class="k">/path/to/my/adapater.rb</span><span class="dl">'</span></span>
+<span class="r">end</span>
+</pre>
+</div>
+    
+    <div id="footer">
+      Webdesign by <a href="http://www.oswd.org/user/profile/id/9462">JM</a>
+      <SCRIPT type='text/javascript' language='JavaScript' src='https://www.ohloh.net/projects/4386;badge_js'></SCRIPT>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-1889510-1";
+urchinTracker();
+</script>
+</body>
+</html>
